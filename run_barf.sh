@@ -44,6 +44,8 @@ pip install termcolor
 python train.py --help
 
 # 사진 정렬-----------------------------------------------------
+# Ubuntu -> home -> 사용자 ID 폴더 -> bundle-adjusting-NeRF 폴더로 찾아 들어갑니다. -> 그 안에 my_travel 이라는 새 폴더를 만듭니다. -> my_travel 폴더 안에 images 라는 폴더를 하나 더 만듭니다. -> 그 images 폴더 안에 스마트폰으로 찍은 여행 사진 20~30장 정도를 복사해서 넣어주세요. (.jpg 또는 .png)
+
 # 1. ImageMagick 설치
 sudo apt-get install imagemagick -y
 
@@ -65,8 +67,6 @@ sudo apt-get install colmap -y
 cd ..
 git clone https://github.com/Fyusion/LLFF.git
 cd bundle-adjusting-NeRF
-
-# Ubuntu -> home -> 사용자 ID 폴더 -> bundle-adjusting-NeRF 폴더로 찾아 들어갑니다. -> 그 안에 my_travel 이라는 새 폴더를 만듭니다. -> my_travel 폴더 안에 images 라는 폴더를 하나 더 만듭니다. -> 그 images 폴더 안에 스마트폰으로 찍은 여행 사진 20~30장 정도를 복사해서 넣어주세요. (.jpg 또는 .png)
 
 # 3. COLMAP 임시 작업 노트 초기화
 rm -rf data/llff/my_travel/database.db data/llff/my_travel/sparse data/llff/my_travel/colmap_* data/llff/my_travel/poses_bounds.npy
