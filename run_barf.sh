@@ -47,15 +47,14 @@ python train.py --help
 # 1. ImageMagick 설치
 sudo apt-get install imagemagick -y
 
-# 2. 사진의 회전 꼬리표(EXIF) 떼고 픽셀 물리적으로 통일하기
-mogrify -auto-orient data/llff/my_travel/images/*.jpg
-
-# 3. data/llff 라는 빈 방을 미리 만들어주기.
+# 2. data/llff 라는 빈 방을 미리 만들어주기.
 mkdir -p data/llff
 
-# 4. my_travel 폴더를 그 방 안으로 옮겨주기.
+# 3. my_travel 폴더를 그 방 안으로 옮겨주기.
 mv my_travel data/llff/
 
+# 4. 사진의 회전 꼬리표(EXIF) 떼고 픽셀 물리적으로 통일하기
+mogrify -auto-orient data/llff/my_travel/images/*.jpg
 
 # 사진 전처리 (COLMAP 세팅)--------------------------------------
 # 1. COLMAP 설치하기
