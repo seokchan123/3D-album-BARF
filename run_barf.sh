@@ -1,3 +1,5 @@
+# Ubuntu 환경 실험 진행 
+
 # 미니콘다 설치하기------------------------------------------
 # 1. 미니콘다 다운로드
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
