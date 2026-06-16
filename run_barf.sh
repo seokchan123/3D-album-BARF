@@ -43,12 +43,18 @@ pip install termcolor
 #4. 설치 테스트
 python train.py --help
 
-# 사진 정렬
+# 사진 정렬-----------------------------------------------------
 # 1. ImageMagick 설치
 sudo apt-get install imagemagick -y
 
 # 2. 사진의 회전 꼬리표(EXIF) 떼고 픽셀 물리적으로 통일하기
 mogrify -auto-orient data/llff/my_travel/images/*.jpg
+
+# 3. data/llff 라는 빈 방을 미리 만들어주기.
+mkdir -p data/llff
+
+# 4. my_travel 폴더를 그 방 안으로 옮겨주기.
+mv my_travel data/llff/
 
 
 # 사진 전처리 (COLMAP 세팅)--------------------------------------
@@ -70,16 +76,10 @@ rm -rf data/llff/my_travel/database.db data/llff/my_travel/sparse data/llff/my_t
 python ../LLFF/imgs2poses.py data/llff/my_travel
 
 # BARF 학습 시작-------------------------------------------------
-# 1. data/llff 라는 빈 방을 미리 만들어주기.
-mkdir -p data/llff
-
-# 2. my_travel 폴더를 그 방 안으로 옮겨주기.
-mv my_travel data/llff/
-
-# 3. 원작자의 하드코딩 숫자 바꾸기. (사용하는 사진 크기에 맞춰서 숫자 변환 후 실행)
+# 1. 원작자의 하드코딩 숫자 바꾸기. (사용하는 사진 크기에 맞춰서 숫자 변환 후 실행)
 sed -i 's/3024,4032/3000,4000/g' data/llff.py
 
-# 4. BARF 학습 시작. (visdom 서버 port 9000으로 켜고 실행)
+# 2. BARF 학습 시작. (visdom 서버 port 9000으로 켜고 실행)
 python train.py --group=my_travel_test --model=barf --yaml=barf_llff --data.dataset=llff --data.scene=my_travel
 
 # 3D 비디오 렌더링 실행하기------------------------------------------
