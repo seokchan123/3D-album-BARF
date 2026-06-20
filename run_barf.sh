@@ -40,6 +40,8 @@ pip install ipdb
 
 pip install termcolor
 
+pip install timm
+
 #4. 설치 테스트
 python train.py --help
 
@@ -74,6 +76,9 @@ rm -rf data/llff/my_travel/database.db data/llff/my_travel/sparse data/llff/my_t
 # 4. COLMAP 전처리 실행
 python ../LLFF/imgs2poses.py data/llff/my_travel
 
+# MiDaS 깊이 맵(Depth Map) 추출 (개조된 barf 실행 시에만 사용) -------------------------
+python extract_depth.py
+
 # BARF 학습 시작-------------------------------------------------
 # 1. 원작자의 하드코딩 숫자 바꾸기. (사용하는 사진 크기에 맞춰서 숫자 변환 후 실행)
 sed -i 's/3024,4032/3000,4000/g' data/llff.py
@@ -90,3 +95,10 @@ python train.py --group=my_travel_test_nerf --model=nerf --yaml=nerf_llff --data
 
 # 2. 2. 일반 NeRF 비디오 추출하기
 python evaluate.py --group=my_travel_test_nerf --model=nerf --yaml=nerf_llff --data.dataset=llff --data.scene=my_travel
+
+# 수정된 barf 학습 시작(수정된 barf 사용 시에 쓰기)-------------------------------------------------
+# 수정된 barf 모델 학습 시작
+python train.py --group=my_travel_test --model=barf --yaml=barf_llff --data.dataset=llff --data.scene=my_travel
+
+# 수정된 barf 모델 3D 앨범 비디오 추출
+python evaluate.py --group=my_travel_test --model=barf --yaml=barf_llff --data.dataset=llff --data.scene=my_travel
