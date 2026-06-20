@@ -97,6 +97,11 @@ python train.py --group=my_travel_test_nerf --model=nerf --yaml=nerf_llff --data
 python evaluate.py --group=my_travel_test_nerf --model=nerf --yaml=nerf_llff --data.dataset=llff --data.scene=my_travel
 
 # 수정된 barf 학습 시작(수정된 barf 사용 시에 쓰기)-------------------------------------------------
+# [주의] 여기서 학습을 시작하기 전에 반드시 아래 3개의 파일을 수정한 코드로 교체해야 합니다.
+# 1) model/nerf.py (스케일 불변 뎁스 손실, 플로터 억제)
+# 2) model/barf.py (적응형 스케줄러)
+# 3) data/llff.py (MiDaS 깊이 맵 로더)
+
 # 수정된 barf 모델 학습 시작
 python train.py --group=my_travel_test --model=barf --yaml=barf_llff --data.dataset=llff --data.scene=my_travel
 
